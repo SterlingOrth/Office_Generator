@@ -12,6 +12,8 @@ const render = require("./lib/htmlRenderer");
 
 let emp = [];
 
+//emp.push(
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
@@ -82,6 +84,7 @@ inquirer
           name: "confirm",
         },
       ]);
+      emp.push(Engineer);
     }
   })
 
@@ -109,6 +112,7 @@ inquirer
           name: "github",
         },
       ]);
+      emp.push(Inern);
     }
   });
 
