@@ -37,8 +37,9 @@ inquirer
       message: 'Select following Role-specific property',
       name: 'Role-Specific Property',
       properties: 'School', 'Github', 'Office Number',
-      },
-    ])
+    },
+    ]);
+  
 
       .then((response) => {
         const Manager = new Manager (response.name, response.role, response.id, response.officeNumber);

@@ -16,3 +16,16 @@ This application was built primarily in NODE.JS environment to auto-create the H
 Use NODE.JS on the app.js and it will prompt you for the employee name, job-type, ID, email and depending on whether it was manager, engineer or intern, will ask for office number, github account or school attending, respectively.
 
 -Sterling Orth
+
+
+
+
+
+
+
+Questions:
+
+1. Github issues
+2. Generating HTML
+3. Overall completion
+4. 
