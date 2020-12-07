@@ -55,27 +55,27 @@ inquirer
            if (response.employee === engineer) {
          inquirer
         .prompt ([   
-            {         
-        type: 'engineer',
-        message: 'What is your name?',
-        name: 'name',
-           },
-           {         
+          {         
+            type: 'engineer',
+            message: 'What is your name?',
+            name: 'name',
+          },
+          {         
             type: 'engineer',
             message: 'What is your role?',
             name: 'confirm',
-               },
-               {         
-                type: 'engineer',
-                message: 'What is your ID?',
-                name: 'confirm',
-                   },
-                   {         
-                    type: 'engineer',
-                    message: 'What is your Github?',
-                    name: 'confirm',
-                       },                
-            ])
+          },
+          {         
+            type: 'engineer',
+            message: 'What is your ID?',
+            name: 'confirm',
+          },
+          {         
+            type: 'engineer',
+            message: 'What is your Github?',
+            name: 'confirm',
+          },                
+        ])
             .then((response) => {
                 //intern
 
