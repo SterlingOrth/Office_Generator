@@ -21,99 +21,130 @@ inquirer
   .prompt([
     {
       type: "input",
-      message: "What is the name of employee?",
+      message: "What is the name of manager?",
       name: "name",
     },
     {
       type: "input",
-      message: "Is employee engineer or intern?",
-      name: "role",
-    },
-    {
-      type: "email",
-      message: "Provide employee ID",
+      message: "What is id of the manager?",
       name: "id",
     },
     {
-      type: "list",
-      message: "Select following Role-specific property",
-      name: "Role-Specific Property",
-      choices: ["School", "Github", "Office Number"],
+      type: "input",
+      message: "What is manager role?",
+      name: "role",
+    },
+    {
+      type: "input",
+      message: "What is manager office number?",
+      name: "officeNumber",
     },
   ])
 
   .then((response) => {
-    const Manager = new Manager(
+    const manager = new Manager(
       response.name,
       response.role,
       response.id,
       response.officeNumber
     );
-
-    inquirer.prompt([
-      {
-        type: "list",
-        message: "What would you like to add, engineer or intern?",
-        name: "employee",
-        choices: ["engineer", "intern", "none"],
-      },
-    ]);
-  })
-
-  .then((response) => {
-    if (response.employee === engineer) {
-      inquirer.prompt([
+    console.log(manager);
+    emp.push(manager);
+    inquirer
+      .prompt([
         {
-          type: "input",
-          message: "What is your name?",
-          name: "name",
+          type: "list",
+          message: "What would you like to add, engineer or intern?",
+          name: "employee",
+          choices: ["engineer", "intern", "none"],
         },
-        {
-          type: "input",
-          message: "What is your role?",
-          name: "",
-        },
-        {
-          type: "input",
-          message: "What is your ID?",
-          name: "confirm",
-        },
-        {
-          type: "input",
-          message: "What is your Github?",
-          name: "confirm",
-        },
-      ]);
-      emp.push(Engineer);
-    }
-  })
-
-  .then((response) => {
-    if (response.employee === intern) {
-      inquirer.prompt([
-        {
-          type: "input",
-          message: "What is your name?",
-          name: "name",
-        },
-        {
-          type: "input",
-          message: "What is your role?",
-          name: "role",
-        },
-        {
-          type: "input",
-          message: "What is your ID?",
-          name: "id",
-        },
-        {
-          type: "input",
-          message: "What is your Github?",
-          name: "github",
-        },
-      ]);
-      emp.push(Inern);
-    }
+      ])
+      .then((response) => {
+        if (response.employee === "engineer") {
+          inquirer
+            .prompt([
+              {
+                type: "input",
+                message: "What is your name?",
+                name: "name",
+              },
+              {
+                type: "input",
+                message: "What is your ID?",
+                name: "id",
+              },
+              {
+                type: "input",
+                message: "What is your email?",
+                name: "email",
+              },
+              {
+                type: "input",
+                message: "What is your Github?",
+                name: "github",
+              },
+            ])
+            .then((response) => {
+              const engineer = new Engineer(
+                response.name,
+                response.id,
+                response.email,
+                response.github
+              );
+              emp.push(engineer);
+              var html = render(emp);
+              fs.writeFileSync("team.html", html);
+              console.log(html);
+              console.log(emp);
+            });
+        } else if (response.employee === "intern") {
+          inquirer
+            .prompt([
+              {
+                type: "input",
+                message: "What is your name?",
+                name: "name",
+              },
+              {
+                type: "input",
+                message: "What is your ID?",
+                name: "id",
+              },
+              {
+                type: "input",
+                message: "What is your email?",
+                name: "email",
+              },
+              {
+                type: "input",
+                message: "What school do you attend?",
+                name: "school",
+              },
+            ])
+            .then((response) => {
+              const intern = new Intern(
+                response.name,
+                response.id,
+                response.email,
+                response.school
+              );
+              console.log(intern);
+              emp.push(intern);
+              var html = render(emp);
+              fs.writeFileSync("team.html", html);
+              console.log(html);
+              console.log(emp);
+            });
+        } else {
+          var html = render(emp);
+          fs.writeFileSync("team.html", html);
+          console.log(html);
+          process.exit();
+        }
+      })
+      .catch((err) => {
+        throw err;
+      });
   });
 
 // save as var and feed into render method
